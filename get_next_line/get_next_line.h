@@ -6,7 +6,7 @@
 /*   By: mde-la-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:04:47 by mde-la-t          #+#    #+#             */
-/*   Updated: 2016/02/17 13:35:06 by mde-la-t         ###   ########.fr       */
+/*   Updated: 2016/02/26 09:33:31 by mde-la-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include "libft.h"
 
 # define BUFF_SIZE 32
+# define MAX_FD 1024
+# define ENDL '\n'
 
-
+int		get_next_line(int const fd, char **line);
 
 #endif
