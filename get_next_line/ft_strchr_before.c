@@ -46,4 +46,5 @@ int		main()
 	printf("%s", ft_strchr(str, c));
 	putchar('\n');
 	printf("%s", ft_strchr_before(str, s, c));
+	return (0);
 }
