@@ -6,7 +6,7 @@
 /*   By: mde-la-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 22:52:13 by mde-la-t          #+#    #+#             */
-/*   Updated: 2016/02/29 23:54:04 by mde-la-t         ###   ########.fr       */
+/*   Updated: 2016/03/17 12:47:10 by mde-la-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ int             main()
 
 	code = 1;
 	i = 1;
-	fd = open("main.c", O_RDONLY);
+	fd = open("test.txt", O_RDONLY);
 	while (code > 0)
 	{
 		code = get_next_line(fd, &line);
 		ft_putnbr(code);
 		ft_putstr(" - ");
 		ft_putnbr(i);
+		ft_putstr(" - ");
+		ft_putstr(line);
 		ft_putchar('\n');
 		i++;
 	}
