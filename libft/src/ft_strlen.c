@@ -6,7 +6,7 @@
 /*   By: mde-la-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:17:33 by mde-la-t          #+#    #+#             */
-/*   Updated: 2015/12/23 12:53:37 by mde-la-t         ###   ########.fr       */
+/*   Updated: 2016/04/01 19:28:38 by mde-la-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 size_t	ft_strlen(char *str)
 {
-	int		index;
+	size_t	n;
 
-	index = 0;
-	while (str[index] != '\0')
-	{
-		index++;
-	}
-	return (index);
+	n = 0;
+	while (*(str + n) != '\0')
+		n += 1;
+	return (n);
 }
