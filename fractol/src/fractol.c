@@ -139,9 +139,9 @@ void		check_fract(t_data *e, char *argv)
 
 void		put_pixel(int x, int y, t_data *e)
 {
-	e->c_red = (75 * e->i / e->i_max) % 256;
-	e->c_gre = (75 * e->i) % 256;
-	e->c_blu = (75 * e->i / e->i_max) % 256;
+	e->c_red = (145 * e->i / e->i_max) % 256;
+	e->c_gre = (90 * e->i) % 256;
+	e->c_blu = (90 * e->i) % 256;
 	if (x >= 0 && y >= 0 && x < WDH && y < HGHT)
 	{
 		e->data_img[(e->s_l * y) + (4 * x) + 2] = e->c_red;

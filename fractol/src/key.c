@@ -14,9 +14,9 @@
 
 static	void	key_iter(int key, t_data *e)
 {
-	if (key == 69)
+	if (key == 69 || key == 34)
 		e->i_max += 2;
-	else if (key == 78)
+	else if (key == 78 || key == 32)
 	{
 		e->i_max -= 2;
 		if (e->i_max == 0)
@@ -53,7 +53,7 @@ int				key(int key, t_data *e)
 		exit(0);
 	else if (key == 15)
 		re_draw(e, 3);
-	else if (key == 69 || key == 78)
+	else if (key == 69 || key == 32 || key == 34 || key == 78)
 		key_iter(key, e);
 	else if (key == 46)
 		e->motion++;
@@ -69,6 +69,15 @@ int				key(int key, t_data *e)
 			e->fr++;
 		re_draw(e, 3);
 	}
+	else if (key == 2)
+	{
+		if (e->fr == 1)
+			e->fr = 7;
+		else
+			e->fr--;
+	}
+	if (key != -1)
+		printf("key = %d\n", key);
 	re_draw(e, 1);
 	return (1);
 }
