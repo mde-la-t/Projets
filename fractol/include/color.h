@@ -6,7 +6,7 @@
 /*   By: mde-la-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/16 16:54:11 by mde-la-t          #+#    #+#             */
-/*   Updated: 2016/09/16 16:54:53 by mde-la-t         ###   ########.fr       */
+/*   Updated: 2016/09/20 17:54:08 by mde-la-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 # define I1 0
 # define I2 1
 # define I3 2
-# define R e->r
-# define G e->g
-# define B e->b
-# define C1(I3, I) e->s[(e->si * e->y) + (4 * e->x) + I3] = I;
-# define C2(I3) e->s[(e->si * e->y) + (4 * e->x) + I3] = (e->i * I / e->im)
-# define C3(I3)	e->s[(e->si * e->y) + (4 * e->x) + I3] = (e->i / I * e->im)
+# define R e->c_red
+# define G e->c_gre
+# define B e->c_blu
+# define C1(I3, I) e->data_img[(e->s_l * e->y) + (4 * e->x) + I3] = I;
+# define C2(I3) e->data_img[(e->s_l * e->y) + (4 * e->x) + I3] = (e->i * I / e->i_max)
+# define C3(I3)	e->data_img[(e->s_l * e->y) + (4 * e->x) + I3] = (e->i / I * e->i_max)
 
 # define WHITE	C1(I3, I) C1(I2, I) C1(I1, I)
 # define BLACK	C1(I3, I1) C1(I2, I1) C1(I1, I1)

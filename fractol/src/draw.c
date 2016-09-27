@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-la-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/09 17:41:22 by mde-la-t          #+#    #+#             */
-/*   Updated: 2016/09/16 16:57:48 by mde-la-t         ###   ########.fr       */
+/*   Created: 2016/09/19 18:37:45 by mde-la-t          #+#    #+#             */
+/*   Updated: 2016/09/21 16:14:43 by mde-la-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void		create_img(t_data *e)
 
 void		mlx(t_data *e, int i)
 {
-	if ((e->fr == 1 || e->fr == 2 || e->fr == 3 || e->fr == 4) && i != 0)
+	if ((e->fr == 1 || e->fr == 2 || e->fr == 3 || e->fr == 4 || e->fr == 8)\
+			&& i != 0)
 	{
 		mlx_hook(e->win, 2, 3, key, e);
 		mlx_mouse_hook(e->win, key_scroll, e);
@@ -43,30 +44,6 @@ void		mlx(t_data *e, int i)
 	}
 }
 
-void		init_tools(t_data *e)
-{
-	e->zoom = 220;
-	e->i_max = 50;
-	e->x1 = -3.0;
-	e->x2 = 3.0;
-	e->y1 = -2.2;
-	e->y2 = 2.2;
-	e->motion = 0;
-}
-
-void		help(void)
-{
-	ft_putendl("Usage : ./fractol fractale");
-	ft_putendl("fractales : ");
-	ft_putendl("1 : mandelbrot");
-	ft_putendl("2 : burning");
-	ft_putendl("3 : mandelbrot1");
-	ft_putendl("4 : tricorn");
-	ft_putendl("5 : julia");
-	ft_putendl("6 : julia1");
-	ft_putendl("7 : julia2");
-}
-
 void		re_draw(t_data *e, int i)
 {
 	if (i != 3)
@@ -85,6 +62,8 @@ void		re_draw(t_data *e, int i)
 			julia1(e);
 		else if (e->fr == 7)
 			julia2(e);
+		else if (e->fr == 8)
+			my_fractal(e);
 		mlx(e, 1);
 	}
 	else
@@ -103,12 +82,14 @@ void		choice_fract(t_data *e, int i)
 		burning(e);
 	else if (i == 4)
 		tricorn(e);
-	else if (i == 4)
+	else if (i == 5)
 		julia(e);
-	else if (i == 4)
+	else if (i == 6)
 		julia1(e);
-	else if (i == 4)
+	else if (i == 7)
 		julia2(e);
+	else if (i == 8)
+		my_fractal(e);
 	mlx(e, 1);
 }
 
@@ -128,6 +109,8 @@ void		check_fract(t_data *e, char *argv)
 		choice_fract(e, 6);
 	else if (ft_strcmp("julia2", argv) == 0 || ft_atoi(argv) == 7)
 		choice_fract(e, 7);
+	else if (ft_strcmp("my_fractal", argv) == 0 || ft_atoi(argv) == 8)
+		choice_fract(e, 8);
 	else if (ft_strcmp("-h", argv) == 0)
 	{
 		help();
@@ -135,32 +118,4 @@ void		check_fract(t_data *e, char *argv)
 	}
 	else
 		USAGE_ERROR;
-}
-
-void		put_pixel(int x, int y, t_data *e)
-{
-	e->c_red = (145 * e->i / e->i_max) % 256;
-	e->c_gre = (90 * e->i) % 256;
-	e->c_blu = (90 * e->i) % 256;
-	if (x >= 0 && y >= 0 && x < WDH && y < HGHT)
-	{
-		e->data_img[(e->s_l * y) + (4 * x) + 2] = e->c_red;
-		e->data_img[(e->s_l * y) + (4 * x) + 1] = e->c_gre;
-		e->data_img[(e->s_l * y) + (4 * x) + 0] = e->c_blu;
-	}
-}
-
-int			main(int argc, char **argv)
-{
-	t_data	e;
-
-	if (argc == 2 && argv[1] && ft_memset(&e, 0, sizeof(e)))
-	{
-		create_img(&e);
-		check_fract(&e, argv[1]);
-		mlx_loop(e.mlx);
-	}
-	else
-		USAGE_ERROR;
-	return (0);
 }

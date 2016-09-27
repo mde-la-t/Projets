@@ -6,7 +6,7 @@
 /*   By: mde-la-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/16 15:54:35 by mde-la-t          #+#    #+#             */
-/*   Updated: 2016/09/16 16:36:50 by mde-la-t         ###   ########.fr       */
+/*   Updated: 2016/09/19 18:31:39 by mde-la-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			julia(t_data *e)
 				e->z_r = e->z_r * e->z_r - e->z_i * e->z_i + e->c_r;
 				e->z_i = 2 * e->z_i * e->tmp + e->c_i;
 			}
-			put_pixel(e->x, e->y, e);
+			choice_color(e);
 		}
 	}
 }
@@ -59,7 +59,7 @@ void			julia1(t_data *e)
 				e->z_r = e->z_r * e->z_r - e->z_i * e->z_i + e->c_r;
 				e->z_i = -2 * e->z_i * e->tmp + e->c_i;
 			}
-			put_pixel(e->x, e->y, e);
+			choice_color(e);
 		}
 	}
 }
@@ -85,7 +85,7 @@ void			julia2(t_data *e)
 				e->z_r = fabs(e->z_r * e->z_r - e->z_i * e->z_i + e->c_r);
 				e->z_i = fabs(2 * e->z_i * e->tmp + e->c_i);
 			}
-			put_pixel(e->x, e->y, e);
+			choice_color(e);
 		}
 	}
 }
