@@ -6,7 +6,7 @@
 /*   By: rberthie <rberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 11:08:16 by rberthie          #+#    #+#             */
-/*   Updated: 2016/06/11 11:58:25 by rberthie         ###   ########.fr       */
+/*   Updated: 2016/10/02 17:26:22 by mde-la-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <stdio.h>
 # include <SDL2/SDL.h>
 
-# define H 600
-# define W 800
+# define H 800
+# define W 1000
+# define MH 22
+# define MW 23
 
 typedef struct		s_sdl
 {
@@ -35,6 +37,7 @@ typedef struct		s_map
 	double			p_y;
 	int				x;
 	int				y;
+	int				worldmap[MH][MW];
 }					t_map;
 
 typedef struct		s_ray
@@ -71,6 +74,7 @@ typedef struct		s_dir
 
 typedef struct		s_e
 {
+	const Uint8		*keystate;
 	t_sdl			s;
 	t_map			m;
 	t_ray			r;
@@ -78,17 +82,18 @@ typedef struct		s_e
 	short			side;
 	int				x;
 	short			loop;
+	int				tp;
 }					t_e;
 
 void				ray(t_e *e);
-int					map(int x, int y);
+void				map(t_e *e);
 void				color(t_e *e);
+void				color2(t_e *e);
 void				ray_i(t_e *e);
 void				calcul_proj(t_e *e);
 void				dda(t_e *e);
 void				ray_d(t_e *e);
-void				sdlk1(t_e *e, short i);
-void				sdlk2(t_e *e, short i);
+void				tp_case(t_e *e);
 void				event(t_e *e);
 void				init(t_e *e, short i);
 

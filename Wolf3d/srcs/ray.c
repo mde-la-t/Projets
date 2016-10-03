@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: robin <robin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mde-la-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/05 08:43:03 by robin             #+#    #+#             */
-/*   Updated: 2016/06/11 14:16:16 by rberthie         ###   ########.fr       */
+/*   Created: 2016/09/26 10:06:58 by mde-la-t          #+#    #+#             */
+/*   Updated: 2016/10/02 16:09:21 by mde-la-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/wolf3d.h"
+
+void				dda(t_e *e)
+{
+	while (e->r.hit == 0)
+	{
+		if (e->r.sdx < e->r.sdy)
+		{
+			e->r.sdx += e->r.ddx;
+			e->m.x += e->r.sx;
+			e->side = 0;
+		}
+		else
+		{
+			e->r.sdy += e->r.ddy;
+			e->m.y += e->r.sy;
+			e->side = 1;
+		}
+		if (e->m.worldmap[e->m.x][e->m.y] > 0)
+			e->r.hit = 1;
+	}
+}
 
 void				ray_d(t_e *e)
 {
@@ -33,27 +54,6 @@ void				ray_d(t_e *e)
 	{
 		e->r.sy = 1;
 		e->r.sdy = (e->m.y + 1.0 - e->r.py) * e->r.ddy;
-	}
-}
-
-void				dda(t_e *e)
-{
-	while (e->r.hit == 0)
-	{
-		if (e->r.sdx < e->r.sdy)
-		{
-			e->r.sdx += e->r.ddx;
-			e->m.x += e->r.sx;
-			e->side = 0;
-		}
-		else
-		{
-			e->r.sdy += e->r.ddy;
-			e->m.y += e->r.sy;
-			e->side = 1;
-		}
-		if ((map(e->m.x, e->m.y)) > 0)
-			e->r.hit = 1;
 	}
 }
 
@@ -98,7 +98,10 @@ void				ray(t_e *e)
 			ray_d(e);
 			dda(e);
 			calcul_proj(e);
-			color(e);
+			if (e->tp == 1)
+				color2(e);
+			else if (e->tp == 0)
+				color(e);
 		}
 		SDL_RenderPresent(e->s.ren);
 	}

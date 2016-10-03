@@ -6,7 +6,7 @@
 #    By: rberthie <rberthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 11:23:48 by nrandria          #+#    #+#              #
-#    Updated: 2016/06/11 14:16:05 by rberthie         ###   ########.fr        #
+#    Updated: 2016/10/02 16:14:32 by mde-la-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBGRPH =  -framework OpenGL -framework SDL2
 
 INC = inc/wolf3d.h
 
-OBJ = srcs/main.o srcs/event.o srcs/ray.o srcs/map.o
+OBJ = srcs/main.o srcs/event.o srcs/color.o srcs/ray.o srcs/map.o srcs/teleport.o
 
 all: $(NAME)
 
